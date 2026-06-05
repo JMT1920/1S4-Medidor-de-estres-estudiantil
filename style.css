@@ -1,13 +1,13 @@
 
 :root {
-    --primary-color: #7C4DFF;
-    --primary-light: #A78BFA;
+    --primary-color: #22C55E;
+    --primary-light: #49e482;
     --background-color: #F5F7FB;
     --card-color: rgba(255, 255, 255, 0.78);
     --text-color: #1F2937;
     --secondary-text: #6B7280;
-    --border-color: rgba(124, 77, 255, 0.15);
-    --shadow-color: rgba(15, 23, 42, 0.08);
+    --border-color: rgba(0, 255, 42, 0.40);
+    --shadow-color: rgba(8, 116, 8, 0.3);
     --success-color: #22C55E;
 }
 
@@ -47,6 +47,9 @@ body {
     z-index: -1;
 }
 
+.hidden {
+    display: none;
+}
 .glow-1 {
     top: -120px;
     left: -120px;
@@ -162,8 +165,8 @@ body {
 
     background: linear-gradient(
         135deg,
-        #7C4DFF,
-        #A855F7
+        #22C55E,
+        #12fd4d
     );
 
     box-shadow: 0px 10px 24px rgba(124, 77, 255, 0.25);
@@ -179,7 +182,10 @@ body {
 
 #primary-button:hover,
 #secondary-button:hover,
-.option-card:hover,
+.option-card:hover {
+    border: 2.2px solid var(--border-color);
+    transform: translateY(-4px);
+}
 #continue-button:hover,
 #restart-button:hover {
     transform: translateY(-4px);
@@ -243,8 +249,8 @@ body {
 
     background: linear-gradient(
         135deg,
-        #7C4DFF,
-        #A855F7
+        #22C55E,
+        #12fd4d
     );
 
     color: white;
@@ -273,8 +279,8 @@ body {
 
     background: linear-gradient(
         90deg,
-        #7C4DFF,
-        #A855F7
+        #22C55E,
+        #1bc746
     );
 }
 
@@ -371,8 +377,8 @@ body {
 
     background: linear-gradient(
         135deg,
-        #7C4DFF,
-        #A855F7
+        #22C55E,
+        #12fd4d
     );
 }
 

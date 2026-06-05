@@ -17,10 +17,19 @@ const restartButton = document.getElementById("restart-button")
 
 const moreInfoButton = document.getElementById("secondary-button")
 
+const initialScreen = document.getElementById("initial-screen")
+const testScreen = document.getElementById("test-screen")
+
 
 /*functions*/
 
 /*PRIV*/
+
+function changeScreens(initial, next) {
+initial.classList.add("hidden");
+next.classList.remove("hidden");
+};
+
 function showQuestion() {
 
 };
@@ -45,5 +54,6 @@ function restartTest() {
 /*events*/
 
 startButton.addEventListener("click", function() {
-    startTest()
+    startTest();
+    changeScreens(initialScreen, testScreen);
 });

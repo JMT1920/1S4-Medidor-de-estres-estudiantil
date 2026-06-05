@@ -3,8 +3,8 @@ Paleta de colores
 Uso	Color
 Fondo principal	Blanco suave #f7f8fae8
 Tarjetas	Blanco puro #FFFFFF
-Bordes/accent	Morado suave #7C4DFF
-Hover morado	#9A7BFF
+Bordes/accent	verde suave #22C55E
+Hover verde	#109942
 Texto principal	Gris oscuro #1F2937
 Texto secundario	Gris suave #6B7280
 Éxito/positivo	Verde suave #22C55E
