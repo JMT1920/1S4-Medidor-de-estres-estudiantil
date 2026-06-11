@@ -21,7 +21,7 @@
 
     <header class="hero-header" id="initial-screen">
         <div class="hero-badge">
-            Proyecto de Feria Científica 2026
+            Proyecto para la Feria Científica 2026
         </div>
 
         <h1>
@@ -33,7 +33,7 @@
         </h2>
 
         <p class="hero-description">
-            Esta herramienta analiza distintos factores relacionados con el estrés academico 
+            Esta herramienta analiza distintos factores relacionados con el estrés academico
             con el proposito de identificar las áreas que podrian estar afectando al bienestar estudiantil.
 
         <div class="hero-buttons">
@@ -45,36 +45,76 @@
                 Ver información
             </button>
         </div>
-        
-    <footer>
-        Feria Científica 2026 - Proyecto desarrollado por Kallai Montilla
-    </footer>
+
+        <footer>
+            Liceo La Virgen - Proyecto desarrollado por Kallai Montilla
+        </footer>
 
     </header>
 
     <main class="questions-layout">
+        <section class="student-info hidden" id="student-info">
 
+            <div class="student-card">
+
+                <h2>Información del estudiante</h2>
+
+                <p>
+                    Antes de comenzar, necesitamos algunos datos básicos.
+                </p>
+
+                <label>Sección</label>
+
+                <select id="student-grade">
+                    <option value="">Selecciona una opción</option>
+                    <option>Séptimo</option>
+                    <option>Octavo</option>
+                    <option>Noveno</option>
+                    <option>Décimo</option>
+                    <option>Undécimo</option>
+                </select>
+
+                <label>Edad</label>
+
+                <select id="student-age">
+                    <option value="">Selecciona una edad</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                </select>
+
+                <button disabled id="start-test">
+                    Empezar evaluación
+                </button>
+
+            </div>
+
+        </section>
         <section class="question-card hidden" id="test-screen">
 
             <div class="question-top">
                 <div>
-                    <p class="question-step">
+                    <p class="question-step" id="question-step">
                         Pregunta 1 de 10
                     </p>
 
-                    <h3 class="question-title">
+                    <h3 class="question-title" id="question-title">
                         ¿Con qué frecuencia has sentido presión por tus estudios
                         durante las últimas semanas?
                     </h3>
                 </div>
 
-                <span class="question-indicator">
-                    10%
+                <span class="question-indicator" id="question-indicator">
+                    0%
                 </span>
             </div>
 
             <div class="progress-bar">
-                <div class="progress"></div>
+                <div class="progress" id="progress"></div>
             </div>
 
             <p class="question-subtitle">
@@ -83,7 +123,7 @@
 
             <div class="options-grid">
 
-                <button class="option-card">
+                <button class="option-card" data-value="4">
                     <span class="option-icon">🔥</span>
 
                     <span class="option-title">
@@ -91,7 +131,7 @@
                     </span>
                 </button>
 
-                <button class="option-card">
+                <button class="option-card" data-value="3">
                     <span class="option-icon">⚡</span>
 
                     <span class="option-title">
@@ -103,11 +143,11 @@
 
             <div class="options-grid2">
 
-                <button class="option-card">
+                <button class="option-card" data-value="2">
                     <span class="option-icon">⚖️</span>
 
                     <span class="option-title">
-                        Más o menos
+                        Más o menos/A veces
                     </span>
                 </button>
 
@@ -115,15 +155,15 @@
 
             <div class="options-grid3">
 
-                <button class="option-card">
+                <button class="option-card" data-value="1">
                     <span class="option-icon">🌙</span>
 
                     <span class="option-title">
-                        No mucho
+                        Casi nunca
                     </span>
                 </button>
 
-                <button class="option-card">
+                <button class="option-card" data-value="0">
                     <span class="option-icon">✅</span>
 
                     <span class="option-title">
@@ -141,41 +181,81 @@
 
         </section>
 
-        <section class="result-card hidden">
+        <section class="result-card hidden" id="result-card">
 
-            <div class="result-badge moderate">
-                Nivel moderado
+            <div class="result-badge moderate" id="result-badge">
+                Riesgo moderado
             </div>
 
             <h2>
-                Tu resultado actual
+                Tu resultado
             </h2>
 
             <p class="result-description">
-                Presentas señales moderadas de estrés académico.
-                Mantener hábitos saludables y una mejor organización
-                puede ayudarte a reducir la presión diaria.
+                Tu evaluación muestra algunos factores que podrían contribuir
+                al estrés académico. La categoría con mayor impacto fue
+                <strong class="main-factor" id="main-factor">
+                    Carga academica
+                </strong>.
             </p>
 
-            <div class="tips-container">
+            <div class="factors-container">
+
+                <div class="factor-card">
+                    <span>Sueño</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="sleep-fill"></div>
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <span>Organización</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="organization-fill"></div>
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <span>Carga academica</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="academic-load-fill"></div>
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <span>Presión academica</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="academic-pressure-fill"></div>
+                    </div>
+                </div>
+
+                <div class="factor-card">
+                    <span>Bienstar</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="wellbeing-fill"></div>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+
+            <div class="tips-container" id="tips-container">
 
                 <div class="tip-card">
-                    <span>🧠</span>
-                    <p>Organiza tus tareas por prioridad.</p>
+                    <p>Divide proyectos grandes en tareas pequeñas.</p>
                 </div>
 
                 <div class="tip-card">
-                    <span>🌿</span>
-                    <p>Descansa entre sesiones de estudio.</p>
+                    <p>Utiliza una agenda para planificar tu semana.</p>
                 </div>
 
                 <div class="tip-card">
-                    <span>💤</span>
-                    <p>Intenta dormir entre 7 y 8 horas.</p>
+                    <p>Realiza pausas cortas durante sesiones largas de estudio.</p>
                 </div>
 
             </div>
 
+            <br>
             <button id="restart-button">
                 Reiniciar evaluación
             </button>
@@ -185,6 +265,7 @@
     </main>
 
     <script src="js/questions.js"></script>
-    <script src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

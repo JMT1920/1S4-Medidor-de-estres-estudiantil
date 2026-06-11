@@ -1,51 +1,348 @@
 /*JamalTamal */
-console.log("JS funcionando");
-console.log(questions)
+import { questions } from "./questions.js";
 
 /*CONFIG*/
-let MAX_QUESTIONS = 10
-let MAX_PUNTUATION = 100
+let MAX_QUESTIONS = questions.length;
+
+let MAX_PUNTUATION = 100;
 
 /*initial params*/
-let question = 0
-let puntuation = 0
+let questionIndex = 0;
+let puntuation = 0;
 
 /*vars*/
-const startButton = document.getElementById("primary-button")
+const answers = {
+    Sueño: [],
+    Organización: [],
+    "Carga academica": [],
+    "Presión academica": [],
+    Bienestar: []
+};
+
+const answerValues = {
+    "Muy frecuentemente": 4,
+    "Frecuentemente": 3,
+    "Más o menos/A veces": 2,
+    "Casi nunca": 1,
+    "Nunca": 0
+};
+
+const infoButton = document.getElementById("primary-button")
+const startButton = document.getElementById("start-test")
 const nextButton = document.getElementById("continue-button")
 const restartButton = document.getElementById("restart-button")
 
 const moreInfoButton = document.getElementById("secondary-button")
+const gradeSelect = document.getElementById("student-grade");
+const ageSelect = document.getElementById("student-age");
 
 const initialScreen = document.getElementById("initial-screen")
+const infoScreen = document.getElementById("student-info")
 const testScreen = document.getElementById("test-screen")
+const resultScreen = document.getElementById("result-card");
 
+const resultBadge = document.getElementById("result-badge");
+const mainFactorText = document.getElementById("main-factor");
 
-/*functions*/
+let questionTitle = document.getElementById("question-title");
+let questionStep = document.getElementById("question-step");
+let questionProgress = document.getElementById("question-indicator");
+let progressBar = document.getElementById("progress")
+
+let progress = (questionIndex / MAX_QUESTIONS) * 100;
+
+const options = document.querySelectorAll(".option-card");
+
+/*FUNCTIONS*/
 
 /*PRIV*/
 
+//Main page functions
 function changeScreens(initial, next) {
 initial.classList.add("hidden");
 next.classList.remove("hidden");
 };
 
-function showQuestion() {
+function validateForm() {
+    
+    let state = startButton.disabled =
+        gradeSelect.value === "" ||
+        ageSelect.value === "";
+    
+    if (state === false) {
+        startButton.style.background = 
+        "linear-gradient(135deg, #22C55E, #12fd4d)";
+    } else {
+        startButton.style.background = 
+        "linear-gradient(135deg, #5f5f5f, #969696)";
+    };
+        //console.log(startButton.disabled);
+}
 
+//Anwers selection functions
+function selectAnswer(answer) {
+
+    document
+        .querySelectorAll(".option-card")
+        .forEach(card => {
+            card.classList.remove("selected");
+        });
+
+    answer.classList.add("selected");
+    nextButton.style.background = 
+        "linear-gradient(135deg, #22C55E, #12fd4d)";
+}
+
+function resetAnswer() {
+
+    document.querySelectorAll(".selected").forEach(element => {
+        element.classList.remove("selected");
+    });
+
+    nextButton.style.background =
+        "linear-gradient(135deg, #5f5f5f, #969696)";
+}
+
+//Score savers function
+function saveAnswer(answerValue) {
+
+    const currentQuestion = questions[questionIndex];
+
+    console.log("Pregunta actual:", questionIndex);
+    console.log("Categoría:", currentQuestion.category);
+
+    if (!answers[currentQuestion.category]) {
+        console.error(
+            "Categoría no encontrada:",
+            currentQuestion.category
+        );
+        console.log("Categorías válidas:", Object.keys(answers));
+        return;
+    }
+
+    answers[currentQuestion.category].push(answerValue);
+}
+
+function getCategoryScore(category) {
+
+    return answers[category].reduce((sum, value) => {
+        return sum + value;
+    }, 0);
+
+}
+
+function getCategoryPercentage(category) {
+
+    const score = getCategoryScore(category);
+
+    const maxScore =
+        answers[category].length * 4;
+
+    if (maxScore === 0) {
+        return 0;
+    }
+
+    return Math.round((score / maxScore) * 100);
+}
+
+//Result functions
+function getTotalScore() {
+
+    let total = 0;
+
+    for (let category in answers) {
+
+        total += getCategoryScore(category);
+
+    }
+
+    return total;
+}
+
+function getStressLevel() {
+
+    const total = getTotalScore();
+
+    if (total <= 13) {
+        updateTips("low");
+        return "Bajo";
+    }
+
+    if (total <= 26) {
+        updateTips("moderate");
+        return "Moderado";
+
+    }
+
+    updateTips("high");
+    return "Alto";
+}
+
+function getMainFactor() {
+
+    let highestCategory = "";
+    let highestScore = -1;
+
+    for (let category in answers) {
+
+        const score = getCategoryScore(category);
+
+        if (score > highestScore) {
+
+            highestScore = score;
+            highestCategory = category;
+
+        }
+    }
+
+    return highestCategory;
+}
+function updateTips(riskLevel) {
+
+    const tipsContainer =
+        document.getElementById("tips-container");
+
+    tipsContainer.innerHTML = "";
+
+    let tips = [];
+
+    if (riskLevel === "low") {
+
+        tips = [
+            "Mantén tus hábitos actuales.",
+            "Continúa organizando tu tiempo.",
+            "Sigue realizando actividades recreativas."
+        ];
+
+    } else if (riskLevel === "moderate") {
+
+        tips = [
+            "Divide proyectos grandes en tareas pequeñas.",
+            "Utiliza una agenda para planificar tu semana.",
+            "Realiza pausas cortas durante sesiones largas de estudio."
+        ];
+
+    } else if (riskLevel === "high") {
+
+        tips = [
+            "Habla con una persona de confianza.",
+            "Reduce la sobrecarga de actividades cuando sea posible.",
+            "Busca apoyo profesional si el estrés persiste."
+        ];
+
+    }
+
+    tips.forEach((tip) => {
+
+        const tipCard = document.createElement("div");
+        tipCard.classList.add("tip-card");
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = tip;
+
+        tipCard.appendChild(paragraph);
+        tipsContainer.appendChild(tipCard);
+
+    });
+}
+
+function showResult() {
+    resultBadge.textContent = getStressLevel();
+
+    mainFactorText.textContent = getMainFactor();
+
+    document.getElementById("sleep-fill").style.width =
+        getCategoryPercentage("Sleep") + "%";
+
+    document.getElementById("organization-fill").style.width =
+        getCategoryPercentage("Organization") + "%";
+
+    document.getElementById("academic-load-fill").style.width =
+        getCategoryPercentage("Academic Load") + "%";
+
+    document.getElementById("academic-pressure-fill").style.width =
+        getCategoryPercentage("Academic Pressure") + "%";
+
+    document.getElementById("wellbeing-fill").style.width =
+        getCategoryPercentage("Wellbeing") + "%";
+
+    changeScreens(testScreen, resultScreen);
+    console.log("Answers:", answers);
+    console.log("Total:", getTotalScore());
+    console.log("Level:", getStressLevel());
+    console.log("Main Factor:", getMainFactor());
 };
 
 function nextQuestion() {
 
-};
+    const selectedAnswer = document.querySelector(".selected");
+
+    if (!selectedAnswer) {
+        nextButton.style.background =
+        "linear-gradient(135deg, #5f5f5f, #969696)";
+        return;
+    }
+
+   const answerValue = Number(
+    selectedAnswer.dataset.value);
+
+    saveAnswer(answerValue);
+
+    resetAnswer();
+
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        console.log("limit reached");
+        showResult();
+        return;
+    }
+
+    const actualQuestion = questions[questionIndex].question;
+
+    progress = Math.round(
+        (questionIndex / MAX_QUESTIONS) * 100
+    );
+
+    questionTitle.textContent = actualQuestion;
+
+    questionStep.textContent =
+        `Pregunta ${questionIndex + 1} de ${questions.length}`;
+
+    questionProgress.textContent = `${progress}%`;
+
+    progressBar.style.width = `${progress}%`;
+}
 
 /*PUBLIC*/
 function restartTest() {
 
 };
 
-/*events*/
+/*EVENTS*/
+
+infoButton.addEventListener("click", function() {
+    changeScreens(initialScreen, infoScreen)
+});
 
 startButton.addEventListener("click", function() {
-    startTest();
-    changeScreens(initialScreen, testScreen);
+    changeScreens(infoScreen, testScreen)
+   
 });
+
+gradeSelect.addEventListener("change", validateForm);
+ageSelect.addEventListener("change", validateForm);
+
+nextButton.addEventListener("click", function() {
+    nextQuestion();  
+});
+
+options.forEach(answer => {
+    answer.addEventListener("click", () => {
+        selectAnswer(answer)
+    });
+});
+
+startButton.disabled = true;
+questionTitle.textContent = questions[0].question;
+console.log("JS funcionando");

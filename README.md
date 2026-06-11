@@ -33,7 +33,7 @@ utilizando una escala psicologica validada cientificamente.
 - Git
 
 # Estado del proyecto
-En desarollo (45% completado aprox.)
+En desarollo (50% completado aprox.)
 
 ## Completado
 - Parte inicial de la pagina
