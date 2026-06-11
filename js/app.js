@@ -39,14 +39,6 @@ function nextQuestion() {
 };
 
 /*PUBLIC*/
-function startTest() {
-    console.log("Test iniciado")
-};
-
-function showResult() {
-
-};
-
 function restartTest() {
 
 };
