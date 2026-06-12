@@ -39,12 +39,12 @@ En desarollo (50% completado aprox.)
 - Parte inicial de la pagina
 - Sección de preguntas (HTML)
 - Detalles de la UI (80%)
-- 
-## Pendiente (To-do list)
 - Preguntas a realizar
 - Consejos segun resultado
 - Sistema de puntaje
 - Selección de respuestas
+- 
+## Pendiente (To-do list)
 - Guardar estadisticas
 - Preguntas variables (edad y curso)
 - Seccion analitica (importante para determinar la conclusión)

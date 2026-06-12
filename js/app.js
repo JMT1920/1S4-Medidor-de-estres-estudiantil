@@ -108,13 +108,10 @@ function saveAnswer(answerValue) {
 
     const currentQuestion = questions[questionIndex];
 
-    console.log("Pregunta actual:", questionIndex);
-    console.log("Categoría:", currentQuestion.category);
-
     if (!answers[currentQuestion.category]) {
         console.error(
-            "Categoría no encontrada:",
-            currentQuestion.category
+           "Categoría no encontrada:",
+           currentQuestion.category
         );
         console.log("Categorías válidas:", Object.keys(answers));
         return;
@@ -197,6 +194,21 @@ function getMainFactor() {
 
     return highestCategory;
 }
+
+function updateResultDescription(stressLevel) {
+    const description = document.getElementById("result-description");
+
+    const texts = {
+        bajo: "Tu nivel de estrés es bajo. Actualmente pareces manejar adecuadamente las situaciones de presión y mantener un buen equilibrio emocional.",
+        
+        moderado: "Tu nivel de estrés es moderado. Es posible que algunas situaciones académicas o personales estén generando tensión ocasionalmente.",
+        
+        alto: "Tu nivel de estrés es alto. Es recomendable prestar atención a tu bienestar emocional y considerar estrategias para reducir la carga de estrés."
+    };
+
+    description.textContent = texts[stressLevel];
+}
+
 function updateTips(riskLevel) {
 
     const tipsContainer =
@@ -252,19 +264,19 @@ function showResult() {
     mainFactorText.textContent = getMainFactor();
 
     document.getElementById("sleep-fill").style.width =
-        getCategoryPercentage("Sleep") + "%";
+        getCategoryPercentage("Sueño") + "%";
 
     document.getElementById("organization-fill").style.width =
-        getCategoryPercentage("Organization") + "%";
+        getCategoryPercentage("Organización") + "%";
 
     document.getElementById("academic-load-fill").style.width =
-        getCategoryPercentage("Academic Load") + "%";
+        getCategoryPercentage("Carga academica") + "%";
 
     document.getElementById("academic-pressure-fill").style.width =
-        getCategoryPercentage("Academic Pressure") + "%";
+        getCategoryPercentage("Presión academica") + "%";
 
     document.getElementById("wellbeing-fill").style.width =
-        getCategoryPercentage("Wellbeing") + "%";
+        getCategoryPercentage("Bienestar") + "%";
 
     changeScreens(testScreen, resultScreen);
     console.log("Answers:", answers);
@@ -273,6 +285,7 @@ function showResult() {
     console.log("Main Factor:", getMainFactor());
 };
 
+/*PUBLIC*/
 function nextQuestion() {
 
     const selectedAnswer = document.querySelector(".selected");
@@ -314,7 +327,6 @@ function nextQuestion() {
     progressBar.style.width = `${progress}%`;
 }
 
-/*PUBLIC*/
 function restartTest() {
 
 };

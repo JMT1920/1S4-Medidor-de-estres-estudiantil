@@ -124,7 +124,9 @@
             <div class="options-grid">
 
                 <button class="option-card" data-value="4">
-                    <span class="option-icon">🔥</span>
+                    <span class="option-icon">
+                        <img src="assets/images/muyfrecuentementeImagen.png" alt="🔥">
+                    </span>
 
                     <span class="option-title">
                         Muy frecuentemente
@@ -132,7 +134,9 @@
                 </button>
 
                 <button class="option-card" data-value="3">
-                    <span class="option-icon">⚡</span>
+                    <span class="option-icon">
+                        <img src="assets/images/frecuentementeImagen.png" alt="⚡">
+                    </span>
 
                     <span class="option-title">
                         Frecuentemente
@@ -144,7 +148,9 @@
             <div class="options-grid2">
 
                 <button class="option-card" data-value="2">
-                    <span class="option-icon">⚖️</span>
+                    <span class="option-icon">
+                        <img src="assets/images/masomenosImagen.png" alt="⚖️">
+                    </span>
 
                     <span class="option-title">
                         Más o menos/A veces
@@ -156,7 +162,9 @@
             <div class="options-grid3">
 
                 <button class="option-card" data-value="1">
-                    <span class="option-icon">🌙</span>
+                    <span class="option-icon">
+                        <img src="assets/images/casiNuncaImagen.png" alt="🌙">
+                    </span>
 
                     <span class="option-title">
                         Casi nunca
@@ -164,7 +172,9 @@
                 </button>
 
                 <button class="option-card" data-value="0">
-                    <span class="option-icon">✅</span>
+                    <span class="option-icon">
+                        <img src="assets/images/nuncaImagen.png" alt="✅">
+                    </span>
 
                     <span class="option-title">
                         Nunca
@@ -191,13 +201,16 @@
                 Tu resultado
             </h2>
 
-            <p class="result-description">
+            <p class="result-description" id="result-description">
                 Tu evaluación muestra algunos factores que podrían contribuir
-                al estrés académico. La categoría con mayor impacto fue
-                <strong class="main-factor" id="main-factor">
-                    Carga academica
-                </strong>.
+                al estrés académico. La categoría con mayor impacto fue:
             </p>
+
+            <strong class="main-factor" id="main-factor">
+                Carga academica
+            </strong>.
+
+            <br>
 
             <div class="factors-container">
 
@@ -230,7 +243,7 @@
                 </div>
 
                 <div class="factor-card">
-                    <span>Bienstar</span>
+                    <span>Bienestar</span>
                     <div class="progress-bar">
                         <div class="progress-fill" id="wellbeing-fill"></div>
                     </div>
@@ -252,14 +265,7 @@
                 <div class="tip-card">
                     <p>Realiza pausas cortas durante sesiones largas de estudio.</p>
                 </div>
-
             </div>
-
-            <br>
-            <button id="restart-button">
-                Reiniciar evaluación
-            </button>
-
         </section>
 
     </main>

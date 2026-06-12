@@ -32,6 +32,10 @@ body {
     color: var(--text-color);
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
 .background-glow {
     position: fixed;
 
@@ -69,6 +73,8 @@ body {
 
     background: #60A5FA;
 }
+
+
 
 .hero-header {
     width: min(900px, 100%);
@@ -201,8 +207,8 @@ body {
 }
 
 .questions-layout {
-    display: grid;
-    grid-template-columns: 1.4fr 0.8fr;
+    display: flex;
+    justify-content: center;
 
     gap: 28px;
 
@@ -289,9 +295,10 @@ body {
 }
 .question-card,
 .result-card {
-    padding: 32px;
+    max-width: 90vw;
+    width: 100%;
 
-    margin: 0 auto;
+    padding: 32px;
 
     border: 1px solid var(--border-color);
     border-radius: 28px;
@@ -399,9 +406,11 @@ body {
     flex-direction: column;
 
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
-    min-height: 120px;
+    gap: 12px;
+
+    min-height: 140px;
 
     padding: 22px 18px;
 
@@ -427,7 +436,10 @@ body {
 }
 
 .option-icon {
-    font-size: 1.8rem;
+    width: clamp(3rem, 8vw, 5rem);
+    height: clamp(3rem, 8vw, 5rem);
+
+    object-fit: contain;
 }
 
 .option-title {
@@ -511,7 +523,7 @@ body {
     align-items: center;
     gap: 14px;
 
-    padding: 18px;
+    padding: 12px;
 
     border-radius: 20px;
 
@@ -527,13 +539,20 @@ body {
 .factors-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    margin-top: 4vh;
+
+    gap: 16px;
 }
 
 .factor-card {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+
+    gap: 4px;
+}
+
+.factor-card span {
+    margin: 0;
 }
 
 .progress-bar {
@@ -548,11 +567,6 @@ body {
     height: 100%;
     border-radius: 999px;
     background: var(--primary-light);
-}
-.restart-button {
-    width: 100%;
-
-    margin-top: 28px;
 }
 
 footer {
