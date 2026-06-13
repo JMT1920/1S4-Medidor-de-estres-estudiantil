@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>1S4 | Estadisticas de estres</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <main class="stats-page">
+        <header class="stats-header">
+            <div>
+                <p class="question-step">Resultados globales</p>
+                <h1>Estadisticas de estres estudiantil</h1>
+                <p>
+                    Datos generados automaticamente con los registros guardados en el navegador.
+                </p>
+            </div>
+
+            <a class="stats-link" href="index.html">Volver al test</a>
+        </header>
+
+        <section class="stats-summary" aria-label="Estadisticas generales">
+            <article class="stat-card">
+                <strong id="total-students">0</strong>
+                <span>Estudiantes evaluados</span>
+            </article>
+
+            <article class="stat-card">
+                <strong id="low-percent">0%</strong>
+                <span>Estres bajo</span>
+            </article>
+
+            <article class="stat-card">
+                <strong id="moderate-percent">0%</strong>
+                <span>Estres moderado</span>
+            </article>
+
+            <article class="stat-card">
+                <strong id="high-percent">0%</strong>
+                <span>Estres alto</span>
+            </article>
+        </section>
+
+        <p class="stats-empty-message" id="empty-message">
+            Todavia no hay resultados guardados. Completa evaluaciones para ver estadisticas.
+        </p>
+
+        <section class="charts-section">
+            <div class="section-heading">
+                <p class="question-step">Seccion 2</p>
+                <h2>Distribucion por grado</h2>
+            </div>
+
+            <div class="charts-grid">
+                <article class="chart-card">
+                    <h3>Estres Bajo</h3>
+                    <canvas id="grade-low-chart"></canvas>
+                    <p class="chart-empty" id="grade-low-empty">Sin datos para este nivel.</p>
+                </article>
+
+                <article class="chart-card">
+                    <h3>Estres Moderado</h3>
+                    <canvas id="grade-moderate-chart"></canvas>
+                    <p class="chart-empty" id="grade-moderate-empty">Sin datos para este nivel.</p>
+                </article>
+
+                <article class="chart-card">
+                    <h3>Estres Alto</h3>
+                    <canvas id="grade-high-chart"></canvas>
+                    <p class="chart-empty" id="grade-high-empty">Sin datos para este nivel.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="charts-section">
+            <div class="section-heading">
+                <p class="question-step">Seccion 3</p>
+                <h2>Distribucion por edad</h2>
+            </div>
+
+            <div class="charts-grid">
+                <article class="chart-card">
+                    <h3>Estres Bajo</h3>
+                    <canvas id="age-low-chart"></canvas>
+                    <p class="chart-empty" id="age-low-empty">Sin datos para este nivel.</p>
+                </article>
+
+                <article class="chart-card">
+                    <h3>Estres Moderado</h3>
+                    <canvas id="age-moderate-chart"></canvas>
+                    <p class="chart-empty" id="age-moderate-empty">Sin datos para este nivel.</p>
+                </article>
+
+                <article class="chart-card">
+                    <h3>Estres Alto</h3>
+                    <canvas id="age-high-chart"></canvas>
+                    <p class="chart-empty" id="age-high-empty">Sin datos para este nivel.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/stats.js"></script>
+</body>
+
+</html>

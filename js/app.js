@@ -258,8 +258,29 @@ function updateTips(riskLevel) {
     });
 }
 
+function saveStressResult(score, level) {
+    const result = {
+        grade: String(gradeSelect.value),
+        age: Number(ageSelect.value),
+        score: score,
+        level: level,
+        date: new Date().toISOString()
+    };
+
+    const stressData =
+        JSON.parse(localStorage.getItem("stressData")) || [];
+
+    stressData.push(result);
+    localStorage.setItem("stressData", JSON.stringify(stressData));
+
+    console.log("Resultado guardado:", result);
+}
+
 function showResult() {
-    resultBadge.textContent = getStressLevel();
+    const totalScore = getTotalScore();
+    const stressLevel = getStressLevel();
+
+    resultBadge.textContent = stressLevel;
 
     mainFactorText.textContent = getMainFactor();
 
@@ -279,9 +300,10 @@ function showResult() {
         getCategoryPercentage("Bienestar") + "%";
 
     changeScreens(testScreen, resultScreen);
-    console.log("Answers:", answers);
-    console.log("Total:", getTotalScore());
-    console.log("Level:", getStressLevel());
+    saveStressResult(totalScore, stressLevel);
+
+    console.log("Total score:", totalScore);
+    console.log("Level:", stressLevel);
     console.log("Main Factor:", getMainFactor());
 };
 
