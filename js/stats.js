@@ -71,6 +71,18 @@ function normalizeStressLevel(level) {
     return "";
 }
 
+function getRecordStressLevel(record) {
+    return record.level || record.nivel || "";
+}
+
+function getRecordGrade(record) {
+    return record.grade || record.seccion || "";
+}
+
+function getRecordAge(record) {
+    return record.age || record.edad || "";
+}
+
 function normalizeGrade(grade) {
     const normalizedGrade = normalizeText(grade);
 
@@ -94,7 +106,7 @@ function getStressPercentages(stressData) {
     };
 
     stressData.forEach((record) => {
-        const level = normalizeStressLevel(record.nivel);
+        const level = normalizeStressLevel(getRecordStressLevel(record));
 
         if (level) {
             counters[level]++;
@@ -124,8 +136,8 @@ function getGradeDistribution(stressData, level) {
     });
 
     stressData.forEach((record) => {
-        const recordLevel = normalizeStressLevel(record.nivel);
-        const recordGrade = normalizeGrade(record.seccion);
+        const recordLevel = normalizeStressLevel(getRecordStressLevel(record));
+        const recordGrade = normalizeGrade(getRecordGrade(record));
 
         if (recordLevel === level && recordGrade) {
             distribution[recordGrade]++;
@@ -139,8 +151,8 @@ function getAgeDistribution(stressData, level) {
     const distribution = {};
 
     stressData.forEach((record) => {
-        const recordLevel = normalizeStressLevel(record.nivel);
-        const age = Number(record.edad);
+        const recordLevel = normalizeStressLevel(getRecordStressLevel(record));
+        const age = Number(getRecordAge(record));
 
         if (recordLevel === level && age) {
             const ageLabel = `${age} años`;
