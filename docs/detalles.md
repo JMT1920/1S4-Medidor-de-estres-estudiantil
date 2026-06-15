@@ -15,17 +15,3 @@ muy frecuentemente = #EF4444
 frecuentemente = #388ad6
 mas o menos = #5a5a5a
 Casi nunca = #d1eb41
-Preguntas
-
-Con que frecuencia te has sentido afectado por algo innesperado?
-Te has sentido nervioso o estresado?
-Te has enfadado porque las cosas estaban fuera de tu control?
-Tienes la sensacion de que todo te molesta?
-Haces mas cosas de las que puedes?
-Tienes problemas de salud?
-Te sientes siempre mal contigo mismo?
- 
- Medidas
-
- Max-width = 850px aproximadamente
-

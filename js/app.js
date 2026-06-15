@@ -6,6 +6,8 @@ let MAX_QUESTIONS = questions.length;
 
 let MAX_PUNTUATION = 100;
 
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJ1q1WoVNddxall-1W98mj02jb2LgmN9NnP2lyxrH9XW9lt12_BuW8QOKFUr3A8KQu/exec";
+
 /*initial params*/
 let questionIndex = 0;
 let puntuation = 0;
@@ -274,6 +276,32 @@ function saveStressResult(score, level) {
     localStorage.setItem("stressData", JSON.stringify(stressData));
 
     console.log("Resultado guardado:", result);
+    sendStressResultToSheet(result);
+}
+
+async function sendStressResultToSheet(result) {
+    if (!GOOGLE_APPS_SCRIPT_URL) {
+        console.warn(
+            "Configura GOOGLE_APPS_SCRIPT_URL con la URL de tu Apps Script."
+        );
+        return;
+    }
+
+    try {
+        await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(result),
+            keepalive: true
+        });
+
+        console.log("Resultado enviado a Google Sheets.");
+    } catch (error) {
+        console.error("No se pudo enviar el resultado:", error);
+    }
 }
 
 function showResult() {

@@ -569,6 +569,11 @@ img {
     background: var(--primary-light);
 }
 
+.index-link {
+    width: 100%;
+
+    margin-top: 28px;
+}
 footer {
     margin-top: 50px;
 
