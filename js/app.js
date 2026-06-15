@@ -6,7 +6,8 @@ let MAX_QUESTIONS = questions.length;
 
 let MAX_PUNTUATION = 100;
 
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJ1q1WoVNddxall-1W98mj02jb2LgmN9NnP2lyxrH9XW9lt12_BuW8QOKFUr3A8KQu/exec";
+const GOOGLE_APPS_SCRIPT_URL = 
+"https://script.google.com/macros/s/AKfycbx_wd7cqo9cWsE3ufPcu1xyeqmZbXw7yM_q1DpsWv4uAzKuj7K0xk2_rVMM2hX4_WXu/exec";
 
 /*initial params*/
 let questionIndex = 0;
